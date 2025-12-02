@@ -1,4 +1,16 @@
-from adventofcode import AoC
+"""🎄 Solution for Day 9 of Advent of Code 2025 🎄
+
+Usage:
+
+uv run adventofcode run 09.py
+"""
+inp = """your input"""
+part1_asserts = [
+    (inp, None),
+]
+part2_asserts = [
+    (inp, None),
+]
 
 
 def part1(inp: str) -> str | int | None:
@@ -7,14 +19,3 @@ def part1(inp: str) -> str | int | None:
 
 def part2(inp: str) -> str | int | None:
     return None
-
-
-aoc = AoC(part_1=part1, part_2=part2)
-inp = """sample input"""
-expected_result = None
-aoc.assert_p1(inp, expected_result)
-aoc.submit_p1()
-
-expected_result = None
-aoc.assert_p2(inp, expected_result)
-aoc.submit_p2()
