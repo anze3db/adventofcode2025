@@ -4,7 +4,7 @@ requires-python = ">=3.14"
 
 [[package]]
 name = "adventofcode"
-version = "25.0"
+version = "25.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -13,9 +13,9 @@ dependencies = [
     { name = "requests" },
     { name = "rich" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c9/ac/4ca14966b044013a3b23aa51958a67842167f893361259567098d69966a4/adventofcode-25.0.tar.gz", hash = "sha256:ed3112e6f99490587028059cf2c8b43a537d37bcd630654c252da8aa81b13f80", size = 7170, upload-time = "2025-11-29T16:26:24.93Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/42/e0/adc6d02bec28a578873c112f44c815900bbb59bae72a58ff52955a814a65/adventofcode-25.4.tar.gz", hash = "sha256:55b317bcbef6b7f70b23b3ebee6078ce1ef78b344223ae6c25c797d0c3c82c1c", size = 12005, upload-time = "2025-12-02T08:52:51.989Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/71/bb/1dbdb12582b24ab81c345b472b58816ec165e6879b0ae9ae3c198dba2034/adventofcode-25.0-py3-none-any.whl", hash = "sha256:8a0361df8b08e62bca617a49646ddd4b6d2591d9b348c35853ec2dcb4bab3393", size = 6495, upload-time = "2025-11-29T16:26:23.355Z" },
+    { url = "https://files.pythonhosted.org/packages/79/ce/7a6e23f4aa087ecf1b3561893b03df848df5d25ab3dad3b62522fa336920/adventofcode-25.4-py3-none-any.whl", hash = "sha256:9ec264f31e6920d7e1a51a9b9d5aba9af2aeb8f2a111652978133641854201e5", size = 11227, upload-time = "2025-12-02T08:52:50.674Z" },
 ]
 
 [[package]]
@@ -31,15 +31,15 @@ requires-dist = [{ name = "adventofcode", specifier = ">=25.0" }]
 
 [[package]]
 name = "beautifulsoup4"
-version = "4.14.2"
+version = "4.14.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "soupsieve" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/77/e9/df2358efd7659577435e2177bfa69cba6c33216681af51a707193dec162a/beautifulsoup4-4.14.2.tar.gz", hash = "sha256:2a98ab9f944a11acee9cc848508ec28d9228abfd522ef0fad6a02a72e0ded69e", size = 625822, upload-time = "2025-09-29T10:05:42.613Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c3/b0/1c6a16426d389813b48d95e26898aff79abbde42ad353958ad95cc8c9b21/beautifulsoup4-4.14.3.tar.gz", hash = "sha256:6292b1c5186d356bba669ef9f7f051757099565ad9ada5dd630bd9de5fa7fb86", size = 627737, upload-time = "2025-11-30T15:08:26.084Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/94/fe/3aed5d0be4d404d12d36ab97e2f1791424d9ca39c2f754a6285d59a3b01d/beautifulsoup4-4.14.2-py3-none-any.whl", hash = "sha256:5ef6fa3a8cbece8488d66985560f97ed091e22bbc4e9c2338508a9d5de6d4515", size = 106392, upload-time = "2025-09-29T10:05:43.771Z" },
+    { url = "https://files.pythonhosted.org/packages/1a/39/47f9197bdd44df24d67ac8893641e16f386c984a0619ef2ee4c51fbbc019/beautifulsoup4-4.14.3-py3-none-any.whl", hash = "sha256:0918bfe44902e6ad8d57732ba310582e98da931428d231a5ecb9e7c703a735bb", size = 107721, upload-time = "2025-11-30T15:08:24.087Z" },
 ]
 
 [[package]]
