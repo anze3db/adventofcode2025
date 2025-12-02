@@ -1,10 +1,3 @@
-from math import log10
-
-
-def num_digits(n: int) -> int:
-    return int(log10(n)) + 1 if n > 0 else 1
-
-
 """🎄 Solution for Day 2 of Advent of Code 2025 🎄
 
 Usage:
@@ -21,50 +14,61 @@ part2_asserts = [
 ]
 
 
-def is_invalid(s: str) -> bool:
-    n = len(s)
-    if n % 2 != 0:
-        return False
-    half = n // 2
-    return s[:half] == s[half:]
-
-
-def is_invalid_part2(s: str) -> bool:
-    n = len(s)
-    for size in range(1, n // 2 + 1):
-        if n % size == 0:
-            times = n // size
-            if s[:size] * times == s:
-                return True
-    return False
-
-
 def part1(inp: str) -> str | int | None:
-    cnt = 0
-    for rng in inp.split(","):
-        start, end = map(int, rng.split("-"))
-        for id in range(start, end + 1):
-            s = str(id)
-            if is_invalid(s):
-                cnt += id
+    def generate_invalid_numbers(start: int, end: int):
+        start_digits = len(str(start))
+        end_digits = len(str(end))
 
-    # return sum(
-    #     [
-    #         id
-    #         for (start, end) in [tuple(rng.split("-")) for rng in inp.split(",")]
-    #         for id in range(int(start), int(end) + 1)
-    #         if id % (div := 10 ** (int(log10(id) + 1) >> 1)) == id // div
-    #     ]
-    # )
-    return cnt
+        for num_d in range(start_digits, end_digits + 1):
+            if num_d % 2 != 0:
+                continue
+            half = num_d // 2
+            # Generate all possible first halves
+            min_half = max(10 ** (half - 1), start // (10**half))
+            max_half = min(10**half, end // (10**half) + 1)
+            for first_half in range(min_half, max_half):
+                s = str(first_half)
+                invalid_num = int(s + s)
+                if start <= invalid_num <= end:
+                    yield invalid_num
+
+    return sum(
+        sum(generate_invalid_numbers(*map(int, rng.split("-"))))
+        for rng in inp.split(",")
+    )
 
 
 def part2(inp: str) -> str | int | None:
-    cnt = 0
-    for rng in inp.split(","):
-        start, end = map(int, rng.split("-"))
-        for id in range(start, end + 1):
-            s = str(id)
-            if is_invalid_part2(s):
-                cnt += id
-    return cnt
+    def generate_invalid_numbers(start: int, end: int):
+        start_digits = len(str(start))
+        end_digits = len(str(end))
+
+        seen = set()  # Avoid duplicates (e.g., 1111 can be "1"*4 or "11"*2)
+
+        for num_d in range(start_digits, end_digits + 1):
+            for pattern_size in range(1, num_d // 2 + 1):
+                if num_d % pattern_size != 0:
+                    continue
+                times = num_d // pattern_size
+                if times < 2:
+                    continue
+
+                min_pattern = max(
+                    10 ** (pattern_size - 1),
+                    start // (10 ** (pattern_size * (times - 1))),
+                )
+                max_pattern = min(
+                    10**pattern_size, end // (10 ** (pattern_size * (times - 1))) + 1
+                )
+
+                for pattern in range(min_pattern, max_pattern):
+                    s = str(pattern)
+                    invalid_num = int(s * times)
+                    if start <= invalid_num <= end and invalid_num not in seen:
+                        seen.add(invalid_num)
+                        yield invalid_num
+
+    return sum(
+        sum(generate_invalid_numbers(*map(int, rng.split("-"))))
+        for rng in inp.split(",")
+    )
