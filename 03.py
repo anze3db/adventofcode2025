@@ -5,18 +5,39 @@ Usage:
 uv run adventofcode run 03.py
 """
 
-inp = """your input"""
+inp = """987654321111111
+811111111111119
+234234234234278
+818181911112111"""
 part1_asserts = [
-    (inp, None),
+    (inp, 357),
 ]
 part2_asserts = [
-    (inp, None),
+    (inp, 3121910778619),
 ]
 
 
 def part1(inp: str) -> str | int | None:
-    return None
+    count = 0
+    for line in inp.splitlines():
+        largest = -1
+        jolts = list(map(int, line))
+        for i, j in enumerate(jolts):
+            for jj in jolts[i + 1 :]:
+                if (new_val := j * 10 + jj) > largest:
+                    largest = new_val
+        count += largest
+
+    return count
 
 
 def part2(inp: str) -> str | int | None:
-    return None
+    count = 0
+    for line in inp.splitlines():
+        joltage = 0
+        for i in range(12, 0, -1):
+            max_joltage = int(max(line)) if i == 1 else int(max(line[: -i + 1]))
+            joltage = joltage * 10 + max_joltage
+            line = line[line.index(str(max_joltage)) + 1 :]
+        count += joltage
+    return count
