@@ -34,10 +34,10 @@ def part1(inp: str) -> str | int | None:
 def part2(inp: str) -> str | int | None:
     count = 0
     for line in inp.splitlines():
-        joltage = 0
-        for i in range(12, 0, -1):
-            max_joltage = int(max(line)) if i == 1 else int(max(line[: -i + 1]))
-            joltage = joltage * 10 + max_joltage
-            line = line[line.index(str(max_joltage)) + 1 :]
-        count += joltage
+        total_joltage = 0
+        for i in range(-12, 0):
+            max_joltage = max(line[: (i + 1) if i != -1 else None])
+            line = line[line.index(max_joltage) + 1 :]
+            total_joltage = total_joltage * 10 + int(max_joltage)
+        count += total_joltage
     return count
