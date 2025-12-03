@@ -19,23 +19,23 @@ part2_asserts = [
 
 def part1(inp: str) -> str | int | None:
     count = 0
+    banks = 2
     for line in inp.splitlines():
-        largest = -1
-        jolts = list(map(int, line))
-        for i, j in enumerate(jolts):
-            for jj in jolts[i + 1 :]:
-                if (new_val := j * 10 + jj) > largest:
-                    largest = new_val
-        count += largest
-
+        total_joltage = 0
+        for i in range(-banks, 0):
+            max_joltage = max(line[: (i + 1) if i != -1 else None])
+            line = line[line.index(max_joltage) + 1 :]
+            total_joltage = total_joltage * 10 + int(max_joltage)
+        count += total_joltage
     return count
 
 
 def part2(inp: str) -> str | int | None:
     count = 0
+    banks = 12
     for line in inp.splitlines():
         total_joltage = 0
-        for i in range(-12, 0):
+        for i in range(-banks, 0):
             max_joltage = max(line[: (i + 1) if i != -1 else None])
             line = line[line.index(max_joltage) + 1 :]
             total_joltage = total_joltage * 10 + int(max_joltage)
