@@ -22,8 +22,8 @@ def part1(inp: str) -> str | int | None:
     banks = 2
     for line in inp.splitlines():
         total_joltage = 0
-        for i in range(-banks, 0):
-            max_joltage = max(line[: (i + 1) if i != -1 else None])
+        for i in range(-banks + 1, 1):
+            max_joltage = max(line[: i if i else None])
             line = line[line.index(max_joltage) + 1 :]
             total_joltage = total_joltage * 10 + int(max_joltage)
         count += total_joltage
@@ -35,8 +35,8 @@ def part2(inp: str) -> str | int | None:
     banks = 12
     for line in inp.splitlines():
         total_joltage = 0
-        for i in range(-banks, 0):
-            max_joltage = max(line[: (i + 1) if i != -1 else None])
+        for i in range(-banks + 1, 1):
+            max_joltage = max(line[: i if i else None])
             line = line[line.index(max_joltage) + 1 :]
             total_joltage = total_joltage * 10 + int(max_joltage)
         count += total_joltage
