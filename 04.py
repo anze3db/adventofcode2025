@@ -5,6 +5,8 @@ Usage:
 uv run adventofcode run 04.py
 """
 
+from collections import deque
+
 inp = """..@@.@@@@.
 @@@.@.@.@@
 @@@@@.@.@@
@@ -22,17 +24,18 @@ part2_asserts = [
     (inp, 43),
 ]
 
+NEIGHBORS = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 
-def num_adjecents(grid: set[tuple[int, int]], paper: tuple[int, int]) -> int:
+
+def can_move(grid: set[tuple[int, int]], paper: tuple[int, int]) -> bool:
     count = 0
     x, y = paper
-    for dx in [-1, 0, 1]:
-        for dy in [-1, 0, 1]:
-            if dx == 0 and dy == 0:
-                continue
-            if (x + dx, y + dy) in grid:
-                count += 1
-    return count
+    for dx, dy in NEIGHBORS:
+        if (x + dx, y + dy) in grid:
+            count += 1
+            if count >= 4:
+                return False
+    return True
 
 
 def part1(inp: str) -> str | int | None:
@@ -43,7 +46,7 @@ def part1(inp: str) -> str | int | None:
             if char == "@":
                 grid.add((i, j))
     for paper in grid:
-        if num_adjecents(grid, paper) < 4:
+        if can_move(grid, paper):
             count += 1
 
     return count
@@ -56,13 +59,25 @@ def part2(inp: str) -> str | int | None:
         for j, char in enumerate(line):
             if char == "@":
                 grid.add((i, j))
-    while True:
-        new_grid = set()
-        for paper in grid:
-            if num_adjecents(grid, paper) < 4:
-                count += 1
-            else:
-                new_grid.add(paper)
-        if new_grid == grid:
-            return count
-        grid = new_grid
+
+    to_check = deque(grid)
+
+    while to_check:
+        paper = to_check.popleft()
+        if paper not in grid:
+            continue
+        neighbors = []
+        for dx, dy in NEIGHBORS:
+            neighbor = (paper[0] + dx, paper[1] + dy)
+            if neighbor in grid:
+                neighbors.append(neighbor)
+
+        if len(neighbors) >= 4:
+            continue
+
+        count += 1
+        grid.remove(paper)
+        for neighbor in neighbors:
+            to_check.appendleft(neighbor)
+
+    return count
