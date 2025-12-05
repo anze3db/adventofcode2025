@@ -5,6 +5,8 @@ Usage:
 uv run adventofcode run 05.py
 """
 
+from bisect import bisect_right
+
 inp = """3-5
 10-14
 16-20
@@ -27,16 +29,27 @@ part2_asserts = [
 def part1(inp: str) -> str | int | None:
     ranges, ids = inp.split("\n\n")
     r = []
-    cnt = 0
     for line in ranges.splitlines():
         a, b = map(int, line.split("-"))
         r.append((a, b))
 
+    r.sort()
+    merged = []
+    for a, b in r:
+        if merged and a <= merged[-1][1] + 1:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], b))
+        else:
+            merged.append((a, b))
+
+    starts = [a for a, _ in merged]
+    cnt = 0
     for number in map(int, ids.splitlines()):
-        for a, b in r:
-            if a <= number <= b:
-                cnt += 1
-                break
+        idx = bisect_right(starts, number) - 1
+        if idx == -1:
+            continue
+        start, end = merged[idx]
+        if start <= number <= end:
+            cnt += 1
     return cnt
 
 
