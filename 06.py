@@ -5,6 +5,8 @@ Usage:
 uv run adventofcode run 06.py
 """
 
+import math
+
 inp = """123 328  51 64 
  45 64  387 23 
   6 98  215 314
@@ -30,52 +32,37 @@ def part1(inp: str) -> str | int | None:
         operations.append(token)
 
     res = 0
+    len_inp = len(inp.splitlines()) - 1
     for j, op in enumerate(operations):
-        col_numbers = [numbers[i, j] for i in range(len(inp.splitlines()) - 1)]
-        if op == "+":
-            result = sum(col_numbers)
-        elif op == "*":
-            result = 1
-            for num in col_numbers:
-                result *= num
-        res += result
+        col_numbers = [numbers[i, j] for i in range(len_inp)]
+        res += sum(col_numbers) if op == "+" else math.prod(col_numbers)
     return res
 
 
 def part2(inp: str) -> str | int | None:
-    grid = {}
-    j = 0
-    i = 0
-    res = 0
-    for c in inp:
-        if c == "\n":
-            grid[i, j] = " "
-            j += 1
-            i = 0
-            continue
-        grid[i, j] = c
-        i += 1
+    lines = inp.splitlines()
+    op_line = lines[-1]
+    data_lines = lines[:-1]
+    width = len(lines[0])
 
-    max_row = max(y for _, y in grid.keys())
-    max_col = max(x for x, _ in grid.keys())
+    res = 0
     to_add = []
     operation = ""
-    for column in range(max_col + 1):
-        col_numbers = []
-        operation = grid[column, max_row] if grid[column, max_row] != " " else operation
-        for row in range(max_row):
-            col_numbers.append(grid[column, row])
-        n = "".join(col_numbers)
-        if n.strip() == "":
-            if operation == "+":
-                result = sum(to_add)
-            elif operation == "*":
-                result = 1
-                for num in to_add:
-                    result *= num
+
+    for col in range(width):
+        col_str = "".join(line[col] for line in data_lines).strip()
+        op_char = op_line[col]
+
+        if op_char != " ":
+            operation = op_char
+
+        if not col_str:
+            res += sum(to_add) if operation == "+" else math.prod(to_add)
             to_add = []
-            res += result
         else:
-            to_add.append(int(n))
+            to_add.append(int(col_str))
+
+    # Handle final group
+    res += sum(to_add) if operation == "+" else math.prod(to_add)
 
     return res
