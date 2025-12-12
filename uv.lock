@@ -4,7 +4,7 @@ requires-python = ">=3.14"
 
 [[package]]
 name = "adventofcode"
-version = "25.10"
+version = "25.12"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -13,9 +13,9 @@ dependencies = [
     { name = "requests" },
     { name = "rich" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/49/0f/e3cd3475df82cce929fdb74025a83e46ff23c6f5034034a0514ba7c159e1/adventofcode-25.10.tar.gz", hash = "sha256:8150e149f79aee719f340616edc657505297f2dca8fa5c20646aab9f095d56a9", size = 143752, upload-time = "2025-12-07T06:26:12.303Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/90/94f61ae24720ad744bc2e430697b0d894dbb05c191ee6b4c923a4585a954/adventofcode-25.12.tar.gz", hash = "sha256:384bf206c26b1210fd8686c7cd9de1cdf92c0614922def562132b1ce91523302", size = 144166, upload-time = "2025-12-12T06:26:02.997Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0f/5a/a52de786779f379112ab9d175f68d8f99769486e340b3df78d890e9d6198/adventofcode-25.10-py3-none-any.whl", hash = "sha256:acc43447cbbf0afd910b254725e3938b9d629676f8dc56dffcc281b5fb92d0ca", size = 13909, upload-time = "2025-12-07T06:26:10.802Z" },
+    { url = "https://files.pythonhosted.org/packages/4e/cb/e667359edee33d05220371b2572e152598c0f4d1ff1c7e44bbd54df27253/adventofcode-25.12-py3-none-any.whl", hash = "sha256:9c3aabb1a5c08bef0c325f4873be445057ab4aa4027a8aea031ec91d3cb1c87c", size = 14092, upload-time = "2025-12-12T06:26:01.338Z" },
 ]
 
 [[package]]
@@ -287,11 +287,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.6.0"
+version = "2.6.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/1c/43/554c2569b62f49350597348fc3ac70f786e3c32e7f19d266e19817812dd3/urllib3-2.6.0.tar.gz", hash = "sha256:cb9bcef5a4b345d5da5d145dc3e30834f58e8018828cbc724d30b4cb7d4d49f1", size = 432585, upload-time = "2025-12-05T15:08:47.885Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1e/24/a2a2ed9addd907787d7aa0355ba36a6cadf1768b934c652ea78acbd59dcd/urllib3-2.6.2.tar.gz", hash = "sha256:016f9c98bb7e98085cb2b4b17b87d2c702975664e4f060c6532e64d1c1a5e797", size = 432930, upload-time = "2025-12-11T15:56:40.252Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/56/1a/9ffe814d317c5224166b23e7c47f606d6e473712a2fad0f704ea9b99f246/urllib3-2.6.0-py3-none-any.whl", hash = "sha256:c90f7a39f716c572c4e3e58509581ebd83f9b59cced005b7db7ad2d22b0db99f", size = 131083, upload-time = "2025-12-05T15:08:45.983Z" },
+    { url = "https://files.pythonhosted.org/packages/6d/b9/4095b668ea3678bf6a0af005527f39de12fb026516fb3df17495a733b7f8/urllib3-2.6.2-py3-none-any.whl", hash = "sha256:ec21cddfe7724fc7cb4ba4bea7aa8e2ef36f607a4bab81aa6ce42a13dc3f03dd", size = 131182, upload-time = "2025-12-11T15:56:38.584Z" },
 ]
 
 [[package]]
